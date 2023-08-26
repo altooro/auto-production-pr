@@ -1,0 +1,37 @@
+name: 'Create Production PR'
+description: 'Open PR for production branch'
+inputs:
+  GITHUB_TOKEN:
+    description: 'Github Token'
+    required: true
+  REPO_NAME:
+    description: 'Repository name'
+    required: true
+  HEAD_BRANCH:
+    description: 'The head branch to merge into production'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: checkout automation
+      uses: actions/checkout@v2
+      with:
+        repository: altooro/create-trello-card
+        path: "auto-production-pr"
+        ref: development
+    - name: Setup python for automation
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.9"
+    - name: Install requests
+      run: pip install requests
+      shell: bash
+    - name: Open production PR
+      run: |
+        export GITHUB_TOKEN=${{ inputs.GITHUB_TOKEN }}
+        export REPO_NAME=${{ inputs.REPO_NAME }}
+        export HEAD_BRANCH=${{ inputs.HEAD_BRANCH }}
+        cd auto-production-pr
+        python script.py
+      shell: bash
