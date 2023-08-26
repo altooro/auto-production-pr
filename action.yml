@@ -17,7 +17,7 @@ runs:
     - name: checkout automation
       uses: actions/checkout@v2
       with:
-        repository: altooro/create-trello-card
+        repository: altooro/auto-production-pr
         path: "auto-production-pr"
         ref: development
     - name: Setup python for automation

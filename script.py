@@ -6,6 +6,7 @@ import re
 github_token = os.environ["GITHUB_TOKEN"]
 repo_name = os.environ["REPO_NAME"]
 head_branch = os.environ["HEAD_BRANCH"]
+head_branch = head_branch.split("/")[-1]
 
 
 def get_version_number(last_merge_pr):
