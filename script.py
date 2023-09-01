@@ -13,7 +13,8 @@ def get_version_number(last_merge_pr):
     float_match = re.search(r'\d+(\.\d+)?', last_merge_pr["title"])
     if float_match:
         float_value = float(float_match.group())
-        return float_value + 0.01
+        result = float_value + 0.01
+        return round(result, 2)
     return 1.99
 
 
