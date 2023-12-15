@@ -19,7 +19,7 @@ def get_version_number(last_merge_pr):
 
 
 all_pr = requests.get(
-    f'https://api.github.com/repos/altooro/{repo_name}/pulls?state=closed&sort=created&direction=desc&per_page=50',
+    f'https://api.github.com/repos/altooro/{repo_name}/pulls?state=closed&sort=updated&direction=desc&per_page=50',
     headers={'Authorization': f'token {github_token}'}
 ).json()
 
