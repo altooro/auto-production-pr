@@ -46,4 +46,6 @@ if pr_number_to_merge and last_production_pr:
         'head': head_branch,
         'base': "production"
     }
-    requests.post(url, json=data, headers=headers)
+    response = requests.post(url, json=data, headers=headers)
+    if response.status_code // 100 != 2:
+        raise ValueError("Error in response ", response.text)
